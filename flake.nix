@@ -1,5 +1,5 @@
 {
-  description = "r flake sample";
+  description = "information_visualization_homework1";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     flake-utils.url = "github:numtide/flake-utils";
