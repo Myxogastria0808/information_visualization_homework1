@@ -259,8 +259,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>データの形式は、csv形式のデータである。 具体的なデータは、以下を参照のこと。</p>
 <div class="cell">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-5ce8b44f678a3b7cbca7" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-5ce8b44f678a3b7cbca7">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6"],["日本万国博覧会","沖縄国際海洋博覧会","国際科学技術博覧会","国際花と緑の博覧会","2005年日本国際博覧会","大阪・関西万博"],[1970,1975,1985,1990,2005,2025],["昭和45年","昭和50年","昭和60年","平成2年","平成17年","令和7年"],[800,1800,2700,2990,4600,7500],[825900,1868000,3163000,3761000,3710000,4813000]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>name<\/th>\n      <th>western_year<\/th>\n      <th>era_year<\/th>\n      <th>entrance_fee<\/th>\n      <th>give_mean<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,4,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"name","targets":1},{"name":"western_year","targets":2},{"name":"era_year","targets":3},{"name":"entrance_fee","targets":4},{"name":"give_mean","targets":5}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-20fb8c13880693d90abb" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-20fb8c13880693d90abb">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6"],["日本万国博覧会","沖縄国際海洋博覧会","国際科学技術博覧会","国際花と緑の博覧会","2005年日本国際博覧会","大阪・関西万博"],[1970,1975,1985,1990,2005,2025],["昭和45年","昭和50年","昭和60年","平成2年","平成17年","令和7年"],[800,1800,2700,2990,4600,7500],[825900,1868000,3163000,3761000,3710000,4813000]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>name<\/th>\n      <th>western_year<\/th>\n      <th>era_year<\/th>\n      <th>entrance_fee<\/th>\n      <th>give_mean<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,4,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"name","targets":1},{"name":"western_year","targets":2},{"name":"era_year","targets":3},{"name":"entrance_fee","targets":4},{"name":"give_mean","targets":5}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p>データの過加工に関しては、R言語で出力した可視化表現をQuartoでサイトの一部として表示している。</p>
@@ -386,56 +386,54 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="視覚的表現のソースコード" class="level2">
 <h2 class="anchored" data-anchor-id="視覚的表現のソースコード">視覚的表現のソースコード</h2>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">suppressPackageStartupMessages</span>({</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">library</span>(showtext)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        <span class="co"># フォントの読み込み</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        showtext<span class="sc">::</span><span class="fu">showtext_auto</span>()</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    })</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># データを読み込む</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>expo_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"./data/data.csv"</span>)</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 西暦順にラベルを並べる</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>label <span class="ot">&lt;-</span> <span class="fu">paste0</span>(expo_data<span class="sc">$</span>name[<span class="fu">order</span>(expo_data<span class="sc">$</span>western_year)], <span class="st">"</span><span class="sc">\n</span><span class="st">("</span>, expo_data<span class="sc">$</span>western_year[<span class="fu">order</span>(expo_data<span class="sc">$</span>western_year)], <span class="st">"年)"</span>)</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>expo_data<span class="sc">$</span>label <span class="ot">&lt;-</span> <span class="fu">factor</span>(</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    label,</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">levels =</span> label,</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co"># 平均年収のスケールを調整する</span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>expo_data<span class="sc">$</span>give_mean_10k <span class="ot">&lt;-</span> expo_data<span class="sc">$</span>give_mean <span class="sc">/</span> <span class="dv">10000</span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 平均年収と入場料のスケールを合わせる</span></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>entrance_fee_min <span class="ot">&lt;-</span> <span class="fu">min</span>(expo_data<span class="sc">$</span>entrance_fee)</span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>entrance_fee_max <span class="ot">&lt;-</span> <span class="fu">max</span>(expo_data<span class="sc">$</span>entrance_fee)</span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>give_mean_min <span class="ot">&lt;-</span> <span class="fu">min</span>(expo_data<span class="sc">$</span>give_mean_10k)</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>give_mean_max <span class="ot">&lt;-</span> <span class="fu">max</span>(expo_data<span class="sc">$</span>give_mean_10k)</span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>scaler <span class="ot">&lt;-</span> (entrance_fee_max <span class="sc">-</span> entrance_fee_min) <span class="sc">/</span> (give_mean_max <span class="sc">-</span> give_mean_min)</span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="co"># グラフの作成</span></span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> expo_data, <span class="fu">aes</span>(<span class="at">x =</span> label)) <span class="sc">+</span></span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> entrance_fee, <span class="at">group =</span> <span class="dv">1</span>, <span class="at">colour =</span> <span class="st">"入場料 (1円単位)"</span>), <span class="at">linewidth =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> give_mean_10k <span class="sc">*</span> scaler, <span class="at">group =</span> <span class="dv">1</span>, <span class="at">colour =</span> <span class="st">"平均所得 (1万円単位)"</span>), <span class="at">linewidth =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(</span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>        <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>),</span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>        <span class="at">sec.axis =</span> <span class="fu">sec_axis</span>(</span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>            <span class="at">transform =</span> <span class="sc">~</span> .x <span class="sc">/</span> scaler,</span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>            <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> give_mean_min, <span class="at">to =</span> give_mean_max, <span class="at">by =</span> <span class="dv">50</span>),</span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>            <span class="at">name =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">日本国民の平均所得 (万円)</span><span class="sc">\n</span><span class="st">"</span></span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_discrete</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="fl">0.07</span>, <span class="fl">0.07</span>)) <span class="sc">+</span></span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_manual</span>(</span>
-<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>        <span class="at">name =</span> <span class="st">"凡例"</span>,</span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>        <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"入場料 (1円単位)"</span> <span class="ot">=</span> <span class="st">"blue"</span>, <span class="st">"平均所得 (1万円単位)"</span> <span class="ot">=</span> <span class="st">"red"</span>)</span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
-<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">万博名</span><span class="sc">\n</span><span class="st">(開催年)</span><span class="sc">\n</span><span class="st">"</span>,</span>
-<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">万国博覧会の大人入場料 (円) </span><span class="sc">\n</span><span class="st">"</span>,</span>
-<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">万博の入場料と平均所得"</span>,</span>
-<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>        <span class="at">subtitle =</span> <span class="st">"日本で開催された万国博覧会の大人の入場料と日本国民の平均所得(万円)との関係"</span></span>
-<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
-<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">30</span>, <span class="at">hjust =</span> <span class="dv">1</span>)</span>
-<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>({</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">library</span>(showtext)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># フォントの読み込み</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    showtext<span class="sc">::</span><span class="fu">showtext_auto</span>()</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># データを読み込む</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>expo_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"./data/data.csv"</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 西暦順にラベルを並べる</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>label <span class="ot">&lt;-</span> <span class="fu">paste0</span>(expo_data<span class="sc">$</span>name[<span class="fu">order</span>(expo_data<span class="sc">$</span>western_year)], <span class="st">"</span><span class="sc">\n</span><span class="st">("</span>, expo_data<span class="sc">$</span>western_year[<span class="fu">order</span>(expo_data<span class="sc">$</span>western_year)], <span class="st">"年)"</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>expo_data<span class="sc">$</span>label <span class="ot">&lt;-</span> <span class="fu">factor</span>(</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    label,</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">levels =</span> label,</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 平均年収のスケールを調整する</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>expo_data<span class="sc">$</span>give_mean_10k <span class="ot">&lt;-</span> expo_data<span class="sc">$</span>give_mean <span class="sc">/</span> <span class="dv">10000</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co"># 平均年収と入場料のスケールを合わせる</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>entrance_fee_min <span class="ot">&lt;-</span> <span class="fu">min</span>(expo_data<span class="sc">$</span>entrance_fee)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>entrance_fee_max <span class="ot">&lt;-</span> <span class="fu">max</span>(expo_data<span class="sc">$</span>entrance_fee)</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>give_mean_min <span class="ot">&lt;-</span> <span class="fu">min</span>(expo_data<span class="sc">$</span>give_mean_10k)</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>give_mean_max <span class="ot">&lt;-</span> <span class="fu">max</span>(expo_data<span class="sc">$</span>give_mean_10k)</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>scaler <span class="ot">&lt;-</span> (entrance_fee_max <span class="sc">-</span> entrance_fee_min) <span class="sc">/</span> (give_mean_max <span class="sc">-</span> give_mean_min)</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="co"># グラフの作成</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> expo_data, <span class="fu">aes</span>(<span class="at">x =</span> label)) <span class="sc">+</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> entrance_fee, <span class="at">group =</span> <span class="dv">1</span>, <span class="at">colour =</span> <span class="st">"入場料 (1円単位)"</span>), <span class="at">linewidth =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> give_mean_10k <span class="sc">*</span> scaler, <span class="at">group =</span> <span class="dv">1</span>, <span class="at">colour =</span> <span class="st">"平均所得 (1万円単位)"</span>), <span class="at">linewidth =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>        <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>),</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>        <span class="at">sec.axis =</span> <span class="fu">sec_axis</span>(</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>            <span class="at">transform =</span> <span class="sc">~</span> .x <span class="sc">/</span> scaler,</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>            <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> give_mean_min, <span class="at">to =</span> give_mean_max, <span class="at">by =</span> <span class="dv">50</span>),</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>            <span class="at">name =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">日本国民の平均所得 (万円)</span><span class="sc">\n</span><span class="st">"</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_discrete</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="fl">0.07</span>, <span class="fl">0.07</span>)) <span class="sc">+</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_manual</span>(</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>        <span class="at">name =</span> <span class="st">"凡例"</span>,</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>        <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"入場料 (1円単位)"</span> <span class="ot">=</span> <span class="st">"blue"</span>, <span class="st">"平均所得 (1万円単位)"</span> <span class="ot">=</span> <span class="st">"red"</span>)</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">万博名</span><span class="sc">\n</span><span class="st">(開催年)</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">万国博覧会の大人入場料 (円) </span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">万博の入場料と平均所得"</span>,</span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>        <span class="at">subtitle =</span> <span class="st">"日本で開催された万国博覧会の大人の入場料と日本国民の平均所得(万円)との関係"</span></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">30</span>, <span class="at">hjust =</span> <span class="dv">1</span>)</span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="生成ai利用の有無" class="level3">
 <h3 class="anchored" data-anchor-id="生成ai利用の有無">生成AI利用の有無</h3>
 <section id="生成に利用したaiサービス" class="level4">
