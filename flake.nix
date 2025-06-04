@@ -12,13 +12,14 @@
       let
         pkgs = inputs.nixpkgs.legacyPackages.${system};
         rpkgs = with inputs.nixpkgs.legacyPackages.${system}.rPackages; [
-          ggplot2
           DT
+          ggplot2
+          showtext
         ];
       in
       {
         devShells.default = pkgs.mkShell {
-          packages = with pkgs; [ R quarto noto-fonts-cjk-serif ] ++ rpkgs;
+          packages = with pkgs; [ R quarto ] ++ rpkgs;
         };
       }
     );

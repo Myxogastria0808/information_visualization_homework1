@@ -113,6 +113,7 @@ Nixを採用したことにより、再現性の高い開発環境を構築す�
 - 使用したR言語のpackage
   - DT
   - ggplot2
+  - showtext
 - 環境の再現
   - Nix (Nix flakes)
 - レポートのサイトの生成
