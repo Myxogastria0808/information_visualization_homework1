@@ -1,10 +1,7 @@
-## 視覚的表現
-
-```{r}
 library(ggplot2)
 
 # データを読み込む
-expo_data <- read.csv("../data/data.csv")
+expo_data <- read.csv("./data/data.csv")
 # 西暦順にラベルを並べる
 label <- paste0(expo_data$name[order(expo_data$western_year)], "\n(", expo_data$western_year[order(expo_data$western_year)], "年)")
 expo_data$label <- factor(
@@ -45,4 +42,3 @@ ggplot(data = expo_data, aes(x = label)) +
     theme(
         axis.text.x = element_text(angle = 30, hjust = 1)
     )
-```

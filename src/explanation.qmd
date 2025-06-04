@@ -2,9 +2,14 @@
 title: "視覚的表現の解説"
 ---
 
-{{< include components/title.qmd >}}
+{{< include components/_title.qmd >}}
 
-{{< include components/graph.qmd >}}
+## 視覚的表現
+
+```{r}
+#| echo: false
+{{< include ./components/_graph.R >}}
+```
 
 ## 対象データ
 
@@ -48,11 +53,8 @@ Googleで「沖縄国際海洋博覧会 入場券」と検索すると、沖縄�
 具体的なデータは、以下を参照のこと。
 
 ```{r}
-library(DT)
-
-# read data
-data <- read.csv("./data/data.csv")
-DT::datatable(data)
+#| echo: false
+{{< include ./components/_table.R >}}
 ```
 
 データの過加工に関しては、R言語で出力した可視化表現をQuartoでサイトの一部として表示している。
@@ -98,46 +100,13 @@ Nixを採用したことにより、再現性の高い開発環境を構築す�
 
 ### flake.nix
 
-以下の`flake.nix`が、開発環境を構築するためのNix言語の記述になる。
-
-# **まだ書けていない**
-
-# packageの追加を忘れない!!!!
+以下の`flake.nix`が、このレポジトリの開発環境を構築するためのNix言語の記述になる。
 
 ```
-{
-  description = "information_visualization_homework1";
-  inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    flake-utils.url = "github:numtide/flake-utils";
-  };
-
-  outputs =
-    inputs:
-    inputs.flake-utils.lib.eachDefaultSystem (
-      system:
-      let
-        pkgs = inputs.nixpkgs.legacyPackages.${system};
-        rpkgs = with inputs.nixpkgs.legacyPackages.${system}.rPackages; [
-          ggplot2
-          DT
-        ];
-      in
-      {
-        devShells.default = pkgs.mkShell {
-          packages = with pkgs; [ R quarto ] ++ rpkgs;
-        };
-      }
-    );
-}
+{{< include ../flake.nix >}}
 ```
-
 
 ## 可視化に利用したツール
-
-# **まだ書けていない**
-
-# packageの追加を忘れない!!!!
 
 - プログラム言語
   - R言語
@@ -174,4 +143,10 @@ Nixを採用したことにより、再現性の高い開発環境を構築す�
 - 作図規則
   - hogehoge
 
-{{< include components/ai.qmd >}}
+## 視覚的表現のソースコード
+
+```r
+{{< include ./components/_graph.R >}}
+```
+
+{{< include components/_ai.qmd >}}

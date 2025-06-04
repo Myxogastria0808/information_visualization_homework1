@@ -2,7 +2,7 @@
 title: "可視化結果の報告"
 ---
 
-{{< include components/title.qmd >}}
+{{< include components/_title.qmd >}}
 
 ## 導入
 
@@ -13,13 +13,24 @@ title: "可視化結果の報告"
 日本国民の所得の変化を観察できる指標の関係を見ることで、相関を視覚的表現で可視化できるのではないかと
 考えた。
 
-{{< include components/graph.qmd >}}
+## 視覚的表現
+
+```{r}
+#| echo: false
+{{< include ./components/_graph.R >}}
+```
 
 ## 主張
 
 # **まだ書けていない**
 
 主張を説明する3段階の説明文（3段階の説明には、1, 2, 3の番号をつけること）
+
+## 視覚的表現のソースコード
+
+```r
+{{< include ./components/_graph.R >}}
+```
 
 ### 出典
 
@@ -37,4 +48,4 @@ title: "可視化結果の報告"
 
 [https://blog.statsbeginner.net/entry/2020/08/11/212405](https://blog.statsbeginner.net/entry/2020/08/11/212405) (2025/6/5)
 
-{{< include components/ai.qmd >}}
+{{< include components/_ai.qmd >}}
