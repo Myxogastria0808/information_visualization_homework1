@@ -18,7 +18,8 @@
       in
       {
         devShells.default = pkgs.mkShell {
-          packages = with pkgs; [ R quarto ] ++ rpkgs;
+          pure = true;
+          packages = with pkgs; [ R quarto noto-fonts ] ++ rpkgs;
         };
       }
     );
