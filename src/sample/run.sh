@@ -1,3 +1,3 @@
 #!bin/bash
 
-Rscript run.r
+Rscript graph.r

@@ -1,9 +1,11 @@
 library(ggplot2)
-suppressPackageStartupMessages({
-  library(showtext)
-  # フォントの読み込み
-  showtext_auto()
-})
+suppressMessages(
+    suppressPackageStartupMessages({
+        library(showtext)
+        # フォントの読み込み
+        showtext::showtext_auto()
+    })
+)
 
 # データを読み込む
 expo_data <- read.csv("./data/data.csv")
