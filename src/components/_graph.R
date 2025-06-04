@@ -2,9 +2,7 @@ library(ggplot2)
 library(showtext)
 
 # フォントの設定
-showtext::font_add_google("Noto Sans JP", "noto-sans")
-showtext::font_add_google("Noto Serif JP", "noto-serif")
-showtext::showtext.auto()
+showtext::showtext_auto()
 # データを読み込む
 expo_data <- read.csv("./data/data.csv")
 # 西暦順にラベルを並べる
