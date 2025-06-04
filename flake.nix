@@ -13,7 +13,7 @@
         pkgs = inputs.nixpkgs.legacyPackages.${system};
         rpkgs = with inputs.nixpkgs.legacyPackages.${system}.rPackages; [
           ggplot2
-          ggsci
+          DT
         ];
       in
       {

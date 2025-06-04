@@ -2,7 +2,7 @@
 title: "可視化結果の報告"
 ---
 
-# 日本で開催された万国博覧会の入場料と日本国民の所得との関係
+{{< include components/title.qmd >}}
 
 ## 導入
 
@@ -13,23 +13,11 @@ title: "可視化結果の報告"
 日本国民の所得の変化を観察できる指標の関係を見ることで、相関を視覚的表現で可視化できるのではないかと
 考えた。
 
-## 視覚的表現
-
-##### データのメモ
-- 大阪万博 (日本万国博覧会)
-
-大人: 800円 (23歳～)
-青年: 600円 (15歳～22歳)
-小人: 400円 (4歳か～14歳)
-夜間: 半額 (17時以降)
-
-- 沖縄万博 (沖縄国際海洋博覧会)
-
-データなし
-
-
+{{< include components/graph.qmd >}}
 
 ## 主張
+
+# **まだ書けていない**
 
 主張を説明する3段階の説明文（3段階の説明には、1, 2, 3の番号をつけること）
 
@@ -37,20 +25,16 @@ title: "可視化結果の報告"
 
 データの出典（URL等）、収集年月日
 
-https://otokupick.com/1388/?utm_source=chatgpt.com/ (2025/6/3)
+[https://otokupick.com/1388/?utm_source=chatgpt.com/](https://otokupick.com/1388/?utm_source=chatgpt.com/) (2025/6/3)
 
+[https://www.expo2025.or.jp/association/](https://www.expo2025.or.jp/association/) (2025/6/5)
 
-### 生成AI利用の有無
+[https://www.expo2025.or.jp/tickets-index/price/](https://www.expo2025.or.jp/tickets-index/price/) (2025/6/5)
 
-#### 生成に利用したAIサービス
-- AIサービス
-  - ChatGPT
-- URL
-  - https://chatgpt.com
+[https://www.nta.go.jp/publication/statistics/kokuzeicho/jikeiretsu/01_02.htm](https://www.nta.go.jp/publication/statistics/kokuzeicho/jikeiretsu/01_02.htm) (2025/6/5)
 
-- ChatGPTを使用して、検証する題目が妥当かどうかの確認を行った。
-  - AIの出力
-    - https://chatgpt.com/share/683ec5f2-3f98-8008-a2b6-69fd2f558425
-  - プロンプト
-    - 過去、日本で開催された万博の入場料を比較することで、日本国民の所得の変化との関係を示すことはできますか？
-    - 沖縄国際海洋博覧会が開催さいれていた当時の入場料金を教えてください。また、出典も明記してください。
+[https://career-research.mynavi.jp/reserch/20250214_92405/](https://career-research.mynavi.jp/reserch/20250214_92405/) (2025/6/5)
+
+[https://blog.statsbeginner.net/entry/2020/08/11/212405](https://blog.statsbeginner.net/entry/2020/08/11/212405) (2025/6/5)
+
+{{< include components/ai.qmd >}}
