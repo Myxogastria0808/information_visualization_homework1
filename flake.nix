@@ -15,6 +15,8 @@
           DT
           ggplot2
           showtext
+          showtextdb
+          sysfonts
         ];
       in
       {
