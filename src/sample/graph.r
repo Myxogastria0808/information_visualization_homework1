@@ -1,8 +1,8 @@
 library(ggplot2)
 suppressMessages({
-  library(showtext)
-  # フォントの読み込み
-  showtext::showtext_auto()
+    library(showtext)
+    # フォントの読み込み
+    showtext::showtext_auto()
 })
 
 # データを読み込む
