@@ -1,10 +1,10 @@
 library(ggplot2)
-library(showtext)
-library(showtextdb)
-library(sysfonts)
+suppressPackageStartupMessages({
+  library(showtext)
+  # フォントの読み込み
+  showtext_auto()
+})
 
-# フォントの設定
-showtext::showtext_auto()
 # データを読み込む
 expo_data <- read.csv("./data/data.csv")
 # 西暦順にラベルを並べる

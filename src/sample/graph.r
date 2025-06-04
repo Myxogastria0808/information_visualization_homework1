@@ -1,7 +1,5 @@
 library(ggplot2)
 library(showtext)
-library(showtextdb)
-library(sysfonts)
 
 # フォントの設定
 showtext::showtext_auto()
