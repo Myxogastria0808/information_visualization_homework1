@@ -9,7 +9,7 @@ suppressMessages({
 expo_data <- read.csv("../data/data.csv")
 
 # 西暦順にラベルを並べる
-label <- paste0(expo_data$name[order(expo_data$western_year)], "\n(", expo_data$western_year[order(expo_data$western_year)], "年)")
+label <- paste0(expo_data$name[order(expo_data$western_year)], " (", expo_data$western_year[order(expo_data$western_year)], "年)")
 expo_data$label <- factor(
     label,
     levels = label,
@@ -46,12 +46,15 @@ graph <- ggplot(data = expo_data, aes(x = label)) +
         values = c("入場料 (1円単位)" = "blue", "平均所得 (1万円単位)" = "red")
     ) +
     labs(
-        x = "\n万博名\n(開催年)\n",
+        x = "\n万博名 (開催年)\n",
         y = "\n万国博覧会の大人入場料 (円) \n",
         title = "\n万博の入場料と平均所得",
         subtitle = "日本で開催された万国博覧会の大人の入場料と日本国民の平均所得(万円)との関係"
     ) +
     theme(
+        # 基本フォントサイズ
+        text = element_text(size = 40),
+        # X軸ラベルの回転
         axis.text.x = element_text(angle = 30, hjust = 1)
     )
 

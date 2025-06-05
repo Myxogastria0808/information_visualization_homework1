@@ -17,6 +17,8 @@ title: "可視化結果の報告"
 
 ```{r}
 #| echo: false
+#| fig-width: 10
+#| fig-height: 8
 {{< include ./components/_graph.R >}}
 ```
 
