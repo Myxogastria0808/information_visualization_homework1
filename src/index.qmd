@@ -1,8 +1,8 @@
 ---
-title: "可視化結果の報告"
+title: "(A) 可視化結果の報告"
 ---
 
-{{< include components/_title.qmd >}}
+## (A1) 日本で開催された万国博覧会の入場料と日本国民の所得との関係
 
 ## 導入
 
@@ -13,7 +13,7 @@ title: "可視化結果の報告"
 日本国民の所得の変化を観察できる指標の関係を見ることで、相関を視覚的表現で可視化できるのではないかと
 考えた。
 
-## 視覚的表現
+## (A2) 視覚的表現
 
 ```{r}
 #| echo: false
@@ -22,7 +22,7 @@ title: "可視化結果の報告"
 {{< include ./components/_graph.R >}}
 ```
 
-## 主張
+## (A3) 主張
 
 ### 1. 基本規則を説明する
 
@@ -50,7 +50,7 @@ title: "可視化結果の報告"
 {{< include ./components/_graph.R >}}
 ```
 
-## 出典
+## (A4) 出典
 
 データの出典（URL等）、収集年月日
 
@@ -66,4 +66,6 @@ title: "可視化結果の報告"
 
 [https://blog.statsbeginner.net/entry/2020/08/11/212405](https://blog.statsbeginner.net/entry/2020/08/11/212405) (2025/6/5)
 
-{{< include components/_ai.qmd >}}
+## (A5) 生成AI利用の有無
+
+ChatGPTの利用をした。
