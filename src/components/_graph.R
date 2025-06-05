@@ -8,11 +8,17 @@ suppressMessages({
 # データを読み込む
 expo_data <- read.csv("./data/data.csv")
 # 西暦順にラベルを並べる
-label <- paste0(expo_data$name[order(expo_data$western_year)], " (", expo_data$western_year[order(expo_data$western_year)], "年)")
+label <- paste0(
+    expo_data$name[order(expo_data$western_year)],
+    " (",
+    expo_data$western_year[order(expo_data$western_year)],
+    "年)"
+)
 expo_data$label <- factor(
     label,
     levels = label,
-    ordered = TRUE)
+    ordered = TRUE
+)
 # 平均年収のスケールを調整する
 expo_data$give_mean_10k <- expo_data$give_mean / 10000
 # 平均年収と入場料のスケールを合わせる
@@ -20,11 +26,22 @@ entrance_fee_min <- min(expo_data$entrance_fee)
 entrance_fee_max <- max(expo_data$entrance_fee)
 give_mean_min <- min(expo_data$give_mean_10k)
 give_mean_max <- max(expo_data$give_mean_10k)
-scaler <- (entrance_fee_max - entrance_fee_min) / (give_mean_max - give_mean_min)
+scaler <- (entrance_fee_max - entrance_fee_min) /
+    (give_mean_max - give_mean_min)
 # グラフの作成
 ggplot(data = expo_data, aes(x = label)) +
-    geom_line(aes(y = entrance_fee, group = 1, colour = "入場料 (1円単位)"), linewidth = 1.2) +
-    geom_line(aes(y = give_mean_10k * scaler, group = 1, colour = "平均所得 (1万円単位)"), linewidth = 1.2) +
+    geom_line(
+        aes(y = entrance_fee, group = 1, colour = "入場料 (1円単位)"),
+        linewidth = 1.2
+    ) +
+    geom_line(
+        aes(
+            y = give_mean_10k * scaler,
+            group = 1,
+            colour = "平均所得 (1万円単位)"
+        ),
+        linewidth = 1.2
+    ) +
     scale_y_continuous(
         expand = c(0, 0),
         sec.axis = sec_axis(

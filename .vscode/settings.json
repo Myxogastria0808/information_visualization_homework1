@@ -7,5 +7,6 @@
         "showtext",
         "showtextdb",
         "sysfonts"
-    ]
+    ],
+    "nixEnvSelector.nixFile": "${workspaceFolder}/flake.nix"
 }
