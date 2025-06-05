@@ -214,7 +214,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="explanation_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="explanation_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -259,8 +259,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>データの形式は、csv形式のデータである。 具体的なデータは、以下を参照のこと。</p>
 <div class="cell">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-20fb8c13880693d90abb" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-20fb8c13880693d90abb">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6"],["日本万国博覧会","沖縄国際海洋博覧会","国際科学技術博覧会","国際花と緑の博覧会","2005年日本国際博覧会","大阪・関西万博"],[1970,1975,1985,1990,2005,2025],["昭和45年","昭和50年","昭和60年","平成2年","平成17年","令和7年"],[800,1800,2700,2990,4600,7500],[825900,1868000,3163000,3761000,3710000,4813000]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>name<\/th>\n      <th>western_year<\/th>\n      <th>era_year<\/th>\n      <th>entrance_fee<\/th>\n      <th>give_mean<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,4,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"name","targets":1},{"name":"western_year","targets":2},{"name":"era_year","targets":3},{"name":"entrance_fee","targets":4},{"name":"give_mean","targets":5}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-b02089470a8a9280e418" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-b02089470a8a9280e418">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6"],["日本万国博覧会","沖縄国際海洋博覧会","国際科学技術博覧会","国際花と緑の博覧会","2005年日本国際博覧会","大阪・関西万博"],[1970,1975,1985,1990,2005,2025],["昭和45年","昭和50年","昭和60年","平成2年","平成17年","令和7年"],[800,1800,2700,2990,4600,7500],[825900,1868000,3163000,3761000,3710000,4813000]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>name<\/th>\n      <th>western_year<\/th>\n      <th>era_year<\/th>\n      <th>entrance_fee<\/th>\n      <th>give_mean<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,4,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"name","targets":1},{"name":"western_year","targets":2},{"name":"era_year","targets":3},{"name":"entrance_fee","targets":4},{"name":"give_mean","targets":5}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p>データの過加工に関しては、R言語で出力した可視化表現をQuartoでサイトの一部として表示している。</p>
@@ -395,7 +395,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># データを読み込む</span></span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>expo_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"./data/data.csv"</span>)</span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 西暦順にラベルを並べる</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>label <span class="ot">&lt;-</span> <span class="fu">paste0</span>(expo_data<span class="sc">$</span>name[<span class="fu">order</span>(expo_data<span class="sc">$</span>western_year)], <span class="st">"</span><span class="sc">\n</span><span class="st">("</span>, expo_data<span class="sc">$</span>western_year[<span class="fu">order</span>(expo_data<span class="sc">$</span>western_year)], <span class="st">"年)"</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>label <span class="ot">&lt;-</span> <span class="fu">paste0</span>(expo_data<span class="sc">$</span>name[<span class="fu">order</span>(expo_data<span class="sc">$</span>western_year)], <span class="st">" ("</span>, expo_data<span class="sc">$</span>western_year[<span class="fu">order</span>(expo_data<span class="sc">$</span>western_year)], <span class="st">"年)"</span>)</span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>expo_data<span class="sc">$</span>label <span class="ot">&lt;-</span> <span class="fu">factor</span>(</span>
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    label,</span>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">levels =</span> label,</span>
@@ -426,14 +426,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>        <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"入場料 (1円単位)"</span> <span class="ot">=</span> <span class="st">"blue"</span>, <span class="st">"平均所得 (1万円単位)"</span> <span class="ot">=</span> <span class="st">"red"</span>)</span>
 <span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
 <span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">万博名</span><span class="sc">\n</span><span class="st">(開催年)</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">万博名 (開催年)</span><span class="sc">\n</span><span class="st">"</span>,</span>
 <span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">万国博覧会の大人入場料 (円) </span><span class="sc">\n</span><span class="st">"</span>,</span>
 <span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">万博の入場料と平均所得"</span>,</span>
 <span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>        <span class="at">subtitle =</span> <span class="st">"日本で開催された万国博覧会の大人の入場料と日本国民の平均所得(万円)との関係"</span></span>
 <span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
 <span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
-<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">30</span>, <span class="at">hjust =</span> <span class="dv">1</span>)</span>
-<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 基本フォントサイズ</span></span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>        <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">30</span>),</span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>        <span class="co"># X軸ラベルの回転</span></span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">30</span>, <span class="at">hjust =</span> <span class="dv">1</span>)</span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="生成ai利用の有無" class="level3">
 <h3 class="anchored" data-anchor-id="生成ai利用の有無">生成AI利用の有無</h3>
 <section id="生成に利用したaiサービス" class="level4">

@@ -199,7 +199,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -224,7 +224,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># データを読み込む</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>expo_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"./data/data.csv"</span>)</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 西暦順にラベルを並べる</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>label <span class="ot">&lt;-</span> <span class="fu">paste0</span>(expo_data<span class="sc">$</span>name[<span class="fu">order</span>(expo_data<span class="sc">$</span>western_year)], <span class="st">"</span><span class="sc">\n</span><span class="st">("</span>, expo_data<span class="sc">$</span>western_year[<span class="fu">order</span>(expo_data<span class="sc">$</span>western_year)], <span class="st">"年)"</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>label <span class="ot">&lt;-</span> <span class="fu">paste0</span>(expo_data<span class="sc">$</span>name[<span class="fu">order</span>(expo_data<span class="sc">$</span>western_year)], <span class="st">" ("</span>, expo_data<span class="sc">$</span>western_year[<span class="fu">order</span>(expo_data<span class="sc">$</span>western_year)], <span class="st">"年)"</span>)</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>expo_data<span class="sc">$</span>label <span class="ot">&lt;-</span> <span class="fu">factor</span>(</span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    label,</span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">levels =</span> label,</span>
@@ -255,14 +255,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>        <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"入場料 (1円単位)"</span> <span class="ot">=</span> <span class="st">"blue"</span>, <span class="st">"平均所得 (1万円単位)"</span> <span class="ot">=</span> <span class="st">"red"</span>)</span>
 <span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
 <span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">万博名</span><span class="sc">\n</span><span class="st">(開催年)</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">万博名 (開催年)</span><span class="sc">\n</span><span class="st">"</span>,</span>
 <span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">万国博覧会の大人入場料 (円) </span><span class="sc">\n</span><span class="st">"</span>,</span>
 <span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">万博の入場料と平均所得"</span>,</span>
 <span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>        <span class="at">subtitle =</span> <span class="st">"日本で開催された万国博覧会の大人の入場料と日本国民の平均所得(万円)との関係"</span></span>
 <span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
 <span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">30</span>, <span class="at">hjust =</span> <span class="dv">1</span>)</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 基本フォントサイズ</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>        <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">30</span>),</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>        <span class="co"># X軸ラベルの回転</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">30</span>, <span class="at">hjust =</span> <span class="dv">1</span>)</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="出典" class="level3">
 <h3 class="anchored" data-anchor-id="出典">出典</h3>
 <p>データの出典（URL等）、収集年月日</p>
