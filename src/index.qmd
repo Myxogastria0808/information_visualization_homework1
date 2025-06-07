@@ -52,8 +52,6 @@ title: "(A) 可視化結果の報告"
 
 ## (A4) 出典
 
-データの出典（URL等）、収集年月日
-
 [https://otokupick.com/1388/?utm_source=chatgpt.com/](https://otokupick.com/1388/?utm_source=chatgpt.com/) (2025/6/3)
 
 [https://www.expo2025.or.jp/association/](https://www.expo2025.or.jp/association/) (2025/6/5)
